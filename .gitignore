@@ -10,3 +10,4 @@ references/sheets/
 audio/_cache/
 audio/stem_*.wav
 *.mp3
+__pycache__/

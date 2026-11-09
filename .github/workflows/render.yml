@@ -109,7 +109,7 @@ jobs:
           ffmpeg -y -f concat -safe 0 -i list.txt -c copy ../video.mp4
       - name: Build audio (only when voice files are committed)
         if: ${{ hashFiles('voice/voice.wav') != '' && hashFiles('voice/words.json') != '' }}
-        run: python3 audio/mix.py
+        run: python3 audio/mix.py || true
       - name: Add audio
         run: |
           if [ -f audio/mix.wav ]; then

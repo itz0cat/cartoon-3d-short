@@ -9,12 +9,12 @@ TOTAL = 1350
 DUR = TOTAL / FPS            # 45.0 s exactly
 fr = lambda f: f / FPS
 
-SNAP, DROP0, DROP1 = 22.0, 23.5, 24.2
+SNAP, DROP0, DROP1 = 34.62, 36.35, 36.95
 FLASH = fr(110)
-HITS = [32.0, 32.5, 33.0]
-SWING_T, PUSH0 = 1.55, 35.0
+HITS = [59.79, 60.33, 61.69]
+SWING_T, PUSH0 = 1.55, 48.79
 PUSHES = [PUSH0 + k * SWING_T for k in range(4)]
-TOURIST_T0 = 41.5
+TOURIST_T0 = 62.08
 
 # id: (first frame, end frame, light, crowd)
 SHOTS = {
