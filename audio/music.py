@@ -351,7 +351,7 @@ def build():
     b.cues.append((62.0, "relaxed tourist version: swung, laid-back vibes melody, walking pizzicato bass, brushes"))
     b.cues.append((67.0, "final Bb chord on 'tourists' (66.72-67.24), rings out, faded to silence at 67.5"))
     end = np.ones(N)
-    a = ns(67.3)
+    a = ns(T.DUR - 0.2)
     end[a:] = np.linspace(1, 0, N - a) ** 1.5
     for k in b.tr:
         b.tr[k] *= end[None, :]
