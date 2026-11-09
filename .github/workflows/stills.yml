@@ -1,0 +1,38 @@
+name: Stills
+
+# Quick look-check: renders a few single frames as small JPEGs (view them in the run's artifacts).
+on:
+  workflow_dispatch:
+    inputs:
+      frames:
+        description: "Comma separated frame numbers"
+        default: "0,100,400"
+
+jobs:
+  stills:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Chrome libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnss3 libdbus-1-3 libatk1.0-0 libasound2t64 libxrandr2 libxkbcommon-dev libxfixes3 libxcomposite1 libxdamage1 libgbm-dev libcups2 libatk-bridge2.0-0
+      - name: Install packages
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+      - name: Render stills
+        env:
+          FRAMES: ${{ inputs.frames }}
+        run: |
+          mkdir -p out
+          export COMPOSITION="$(jq -r .composition render.config.json)"
+          node scripts/bridge-stills.mjs out/still_ "$FRAMES" 1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stills
+          path: out/*.jpg
+          retention-days: 7

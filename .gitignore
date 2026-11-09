@@ -1,0 +1,12 @@
+node_modules/
+out/
+.remotion/
+*.mp4
+*.mov
+# style-study material from the original skill: never publish (see SKILL.md)
+references/frames/
+references/sheets/
+# generated audio (keep voice.wav / words.json / mix.wav only if you want CI to mux audio)
+audio/_cache/
+audio/stem_*.wav
+*.mp3
